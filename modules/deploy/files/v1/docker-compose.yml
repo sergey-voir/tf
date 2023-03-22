@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: $${DOCKER_REPO_URL}haproxy:${ proxy_version }
+    command: haproxy -c -f /usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - web
+  web:
+    image: $${DOCKER_REPO_URL}web:${ backend_version }
+    command: python /srv/run.py 0.0.0.0:8000
