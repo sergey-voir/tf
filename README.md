@@ -1,2 +1,3 @@
-# tf
-Terraform experiments
+# Terraform experiments
+
+`modules/deploy` - deploy docker-compose revisions
